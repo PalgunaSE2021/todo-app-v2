@@ -1,0 +1,27 @@
+<p-card
+  *ngFor="let task of tasks"
+  class="task-card"
+  [styleClass]="'task-card-content'"
+>
+  <div class="task-header">
+    {{ task.name }}
+  </div>
+  <div class="task-details">
+    <span class="due-date" > {{ task.dueDate | date }}</span>
+    <!-- <p>Due Date: {{ task.dueDate | date }}</p> -->
+  </div>
+  <span
+    class="priority"
+    [ngClass]="{
+      'p-0-task': task.priority === 'P0',
+      'p-1-task': task.priority === 'P1',
+      'p-2-task': task.priority === 'P2'
+    }"
+  >
+    {{ task.priority }}
+  </span>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-pencil" class="p-button-info"></p-button>
+    <p-button icon="pi pi-trash" class="p-button-danger"></p-button>
+  </ng-template>
+</p-card>

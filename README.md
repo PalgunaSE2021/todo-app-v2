@@ -1,5 +1,7 @@
 # TodoAppV2
 
+Revamped version of old todo-list app
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
 ## Development server

@@ -40,6 +40,8 @@ export class AddTaskDialogComponent implements OnInit {
     priority: '',
   };
 
+  today: Date = new Date();
+
   priorityOptions: ('P0' | 'P1' | 'P2')[] = ['P0', 'P1', 'P2'];
   statusOptions: any[] = [
     { label: 'Open', value: 'OPEN' },

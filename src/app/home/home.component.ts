@@ -32,7 +32,19 @@ export class HomeComponent implements OnInit {
     });
     this.ref.onClose.subscribe((newTask: Task) => {
       if (newTask) {
-        this.openTasks = [newTask, ...this.openTasks];
+        switch (newTask.status) {
+          case 'OPEN':
+            this.openTasks = [newTask, ...this.openTasks];
+            break;
+          case 'IN_PROGRESS':
+            this.inProgressTasks = [newTask, ...this.inProgressTasks];
+            break;
+          case 'COMPLETE':
+            this.completeTasks = [newTask, ...this.completeTasks];
+            break;
+          default:
+            break;
+        }
       }
     });
   }
@@ -40,13 +52,13 @@ export class HomeComponent implements OnInit {
   getAllTasks() {
     this.tasksService.getTasks().subscribe((allTasks) => {
       this.openTasks = this.tasksService.filterTasksByStatus(allTasks, 'OPEN');
-      this.completeTasks = this.tasksService.filterTasksByStatus(
-        allTasks,
-        'COMPLETE'
-      );
       this.inProgressTasks = this.tasksService.filterTasksByStatus(
         allTasks,
         'IN_PROGRESS'
+      );
+      this.completeTasks = this.tasksService.filterTasksByStatus(
+        allTasks,
+        'COMPLETE'
       );
     });
   }

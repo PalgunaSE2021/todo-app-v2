@@ -1,0 +1,92 @@
+.task-card {
+  background-color: #7da5b0;
+  border: 1px solid #3e3131;
+  border-radius: 8px;
+  margin: 24px;
+  padding: 4px;
+  display: flex;
+  opacity: 0;
+  transform: scale(0.5);
+  animation: popIn 0.5s ease-out forwards;
+
+  .task-header {
+    color: rgb(36, 34, 34);
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1.2rem;
+  }
+
+  .task-details {
+    margin-top: 12px;
+    margin-bottom: 16px;
+
+    p {
+      margin: 4px 0;
+    }
+  }
+
+  .p-card-footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.p-button-info {
+  color: white;
+  margin-right: 24px;
+}
+
+.p-button-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: white;
+
+  &:hover {
+    background-color: #c9302c;
+    border-color: #c9302c;
+  }
+}
+
+.priority {
+  border-radius: 12px;
+  padding: 2px 8px;
+  border: 1px solid;
+  margin-top: 8px;
+
+  &.p-0-task {
+    border-color: #f5c0c3;
+    background-color: #fce9ea;
+    color: #da1e28;
+  }
+
+  &.p-1-task {
+    color: #556ef2;
+    border-color: #d9def8;
+    background-color: #eef1fe;
+  }
+
+  &.p-2-task {
+    color: #24a148;
+    border-color: #d9ebe1;
+    background-color: #e9f6ed;
+  }
+}
+
+.due-date {
+  margin-bottom: 8px;
+  margin-top: 8px;
+  font-family: serif;
+  font-size: large;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

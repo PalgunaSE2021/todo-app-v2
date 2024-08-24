@@ -13,32 +13,80 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-around;
+  justify-content: center;
+  padding: 0 24px;
 
-  .open-tasks,
-  .in-progress-tasks,
-  .complete-tasks {
-    display: flex;
-    flex-direction: column;
-    max-width: 30%;
-    border-radius: 12px;
-    height: 100%;
-    padding: 24px;
-    border: 2px solid;
+  .heading {
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit;
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 3px;
+      background-color: inherit; // Inherit from the parent
+      margin: 0.5rem auto 0 auto;
+      transition: all 0.4s ease-in-out;
+    }
   }
 
-  .open-tasks {
-    border-color: #f5c0c3;
-    background-color: #fce9ea;
+  .open-tasks:hover .heading,
+  .in-progress-tasks:hover .heading,
+  .complete-tasks:hover .heading {
+    &::after {
+      width: 80%;
+      background-color: #580a43;
+    }
   }
 
-  .in-progress-tasks {
-    border-color: #d9def8;
-    background-color: #eef1fe;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+}
 
-  .complete-tasks {
-    border-color: #d9ebe1;
-    background-color: #e9f6ed;
+.open-tasks,
+.in-progress-tasks,
+.complete-tasks {
+  display: flex;
+  flex: 1;
+  max-width: 600px;
+  flex-direction: column;
+  border-radius: 12px;
+  height: 100%;
+  transition: all 0.4s ease-in-out;
+
+  .heading {
+    color: inherit;
+  }
+}
+
+.open-tasks {
+  .heading {
+    color: #f9a3a7;
+  }
+}
+
+.in-progress-tasks {
+  .heading {
+    color: #9aa9ed;
+  }
+}
+
+.complete-tasks {
+  .heading {
+    color: rgb(18, 76, 42);
   }
 }

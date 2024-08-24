@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
+  private tasks: Task[] = [];
   constructor() {}
 
   getTasks(): Observable<Task[]> {
@@ -122,4 +123,8 @@ export class TasksService {
   filterTasksByStatus = (allTasks: Task[], status: string) => {
     return allTasks.filter((task) => task.status === status);
   };
+
+  deleteTask(taskId: string): void {
+    this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  }
 }

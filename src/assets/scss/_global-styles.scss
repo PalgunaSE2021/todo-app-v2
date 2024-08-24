@@ -8,6 +8,19 @@
 //   color: #ec4899;
 //   background: white;
 // }
-.p-dialog-content {
-  padding: 0 24px;
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.mt-4 {
+  margin-top: 4px !important;
+}
+
+.p-card-body {
+  width: 100%;
+}
+
+.p-card {
+  box-shadow: none;
 }

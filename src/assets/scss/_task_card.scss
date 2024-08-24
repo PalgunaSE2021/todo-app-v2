@@ -5,7 +5,40 @@
   justify-content: center;
   flex-direction: column;
 
+  &.in-progress-task {
+    border: 1px solid #95a3eb;
+    background-color: #eef1fe;
+
+    &:hover {
+      box-shadow: 0px 2px 8px 0px #95a3eb;
+    }
+  }
+
+  &.open-task {
+    border: 1px solid #e09599;
+    background-color: #fce9ea;
+
+    &:hover {
+      box-shadow: 0px 2px 8px 0px #e09599;
+    }
+  }
+
+  &.complete-task {
+    border: 1px solid #80dca9;
+    background-color: #e9f6ed;
+
+    &:hover {
+      box-shadow: 0px 2px 8px 0px #80dca9;
+    }
+  }
+
   .p-card-content {
     padding-top: 0;
+  }
+
+  .p-button.p-button-icon-only {
+    width: 28px;
+    height: 30px;
+    padding: 4px;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { Task } from '../models/task.model';
@@ -9,6 +9,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-add-task-dialog',
@@ -49,7 +50,10 @@ export class AddTaskDialogComponent implements OnInit {
     { label: 'Complete', value: 'COMPLETE' },
   ];
 
-  constructor(public dynamicDialogRef: DynamicDialogRef) {}
+  constructor(
+    public dynamicDialogRef: DynamicDialogRef,
+    public config: DynamicDialogConfig
+  ) {}
 
   onCancel() {
     this.dynamicDialogRef.close();
@@ -63,6 +67,8 @@ export class AddTaskDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.task;
+    if (this.config.data && this.config.data.task) {
+      this.task = { ...this.config.data.task };
+    }
   }
 }

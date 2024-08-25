@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { NgModel } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Task } from '../models/task.model';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -29,6 +30,10 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   ],
 })
 export class AddTaskDialogComponent implements OnInit {
+  @ViewChild('taskName') taskName!: NgModel;
+  @ViewChild('dueDate') dueDate!: NgModel;
+  @ViewChild('priority') priority!: NgModel;
+  @ViewChild('status') status!: NgModel;
   ref: DynamicDialogRef | undefined;
   value: string = '';
   date: Date | undefined;
@@ -59,9 +64,26 @@ export class AddTaskDialogComponent implements OnInit {
     this.dynamicDialogRef.close();
   }
 
+  markAllFieldsTouched() {
+    this.taskName.control.markAsTouched();
+    this.dueDate.control.markAsTouched();
+    this.priority.control.markAsTouched();
+    this.status.control.markAsTouched();
+  }
+
   onSave() {
-    if (!this.task.name || !this.task.dueDate || !this.task.priority) {
+    this.markAllFieldsTouched();
+
+    if (
+      this.taskName.invalid ||
+      this.dueDate.invalid ||
+      this.priority.invalid
+    ) {
       return;
+    }
+
+    if (!this.task.id) {
+      this.task.id = 't' + new Date().getTime().toString().slice(-5);
     }
     this.dynamicDialogRef.close(this.task);
   }

@@ -1,54 +1,46 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { NgModel } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Task } from '../models/task.model';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
-import { MultiSelectModule } from 'primeng/multiselect';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-add-task-dialog',
   standalone: true,
-  templateUrl: './add-task-dialog.component.html',
-  styleUrl: './add-task-dialog.component.scss',
-  providers: [DialogService],
   imports: [
     ButtonModule,
-    DropdownModule,
-    FloatLabelModule,
-    FormsModule,
     InputTextModule,
+    FormsModule,
+    FloatLabelModule,
     CalendarModule,
-    MultiSelectModule,
+    DropdownModule,
+    ReactiveFormsModule,
     CommonModule,
   ],
+  templateUrl: './add-task-dialog.component.html',
+  styleUrl: './add-task-dialog.component.scss',
 })
 export class AddTaskDialogComponent implements OnInit {
-  @ViewChild('taskName') taskName!: NgModel;
-  @ViewChild('dueDate') dueDate!: NgModel;
-  @ViewChild('priority') priority!: NgModel;
-  @ViewChild('status') status!: NgModel;
-  ref: DynamicDialogRef | undefined;
   value: string = '';
   date: Date | undefined;
-  name?: string;
 
   task: Task = {
     name: '',
     status: 'OPEN',
     dueDate: new Date(),
     priority: '',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
-
   today: Date = new Date();
 
   priorityOptions: ('P0' | 'P1' | 'P2')[] = ['P0', 'P1', 'P2'];
+
   statusOptions: any[] = [
     { label: 'Open', value: 'OPEN' },
     { label: 'In progress', value: 'IN_PROGRESS' },
@@ -60,37 +52,22 @@ export class AddTaskDialogComponent implements OnInit {
     public config: DynamicDialogConfig
   ) {}
 
+  ngOnInit(): void {
+    if (this.config.data?.task) {
+      this.task = { ...this.config.data.task };
+      this.date = new Date(this.task.dueDate);
+    }
+  }
+
   onCancel() {
     this.dynamicDialogRef.close();
   }
 
-  markAllFieldsTouched() {
-    this.taskName.control.markAsTouched();
-    this.dueDate.control.markAsTouched();
-    this.priority.control.markAsTouched();
-    this.status.control.markAsTouched();
-  }
-
   onSave() {
-    this.markAllFieldsTouched();
-
-    if (
-      this.taskName.invalid ||
-      this.dueDate.invalid ||
-      this.priority.invalid
-    ) {
+    if (!this.task.name || !this.date || !this.task.priority) {
       return;
     }
-
-    if (!this.task.id) {
-      this.task.id = 't' + new Date().getTime().toString().slice(-5);
-    }
+    this.task.dueDate = this.date;
     this.dynamicDialogRef.close(this.task);
-  }
-
-  ngOnInit(): void {
-    if (this.config.data && this.config.data.task) {
-      this.task = { ...this.config.data.task };
-    }
   }
 }

@@ -1,22 +1,22 @@
 <p-card
-  *ngFor="let task of tasks; let i = index"
+  *ngFor="let task of tasks"
   class="task-card cursor-pointer"
-  [@fadeOut]
   [styleClass]="taskCardStyleClass"
 >
   <div class="task-header">
     <span>{{ task.name }}</span>
     <span class="task-actions">
-      <p-button icon="pi pi-pencil" (click)="editTask(task)"></p-button>
+      <p-button icon="pi pi-pencil" (click)="onEditTask(task)"></p-button>
       <p-button
         icon="pi pi-trash"
         class="mt-4"
-        (click)="deleteTask(task.id, i)"
+        (click)="onDeleteTask(task)"
       ></p-button>
     </span>
   </div>
   <div class="task-details">
     <span class="due-date"> {{ task.dueDate | date }}</span>
+    <!-- <p>Due Date: {{ task.dueDate | date }}</p> -->
   </div>
   <span
     class="priority"

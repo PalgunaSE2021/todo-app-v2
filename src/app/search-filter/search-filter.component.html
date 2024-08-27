@@ -1,0 +1,29 @@
+<div class="container">
+  <p-floatLabel>
+    <input
+      class="input-container"
+      type="text"
+      name="searchTask"
+      pInputText
+      [(ngModel)]="searchText"
+      pTooltip="Find your tasks here"
+      tooltipPosition="bottom"
+      (input)="onSearch()"
+    />
+    <label for="searchTask">Search Task</label>
+  </p-floatLabel>
+
+  <div class="card flex justify-content-center">
+    <p-dropdown
+      [options]="priorityFilterOptions"
+      [(ngModel)]="priority"
+      placeholder="Priority"
+      pTooltip="Filter tasks based on priority"
+      tooltipPosition="bottom"
+      (onChange)="onPriorityChange()"
+      [showClear]="true"
+      [styleClass]="'priority-dropdown'"
+    >
+    </p-dropdown>
+  </div>
+</div>

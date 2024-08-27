@@ -6,7 +6,6 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
-  private tasks: Task[] = [];
   constructor() {}
 
   getTasks(): Observable<Task[]> {
@@ -17,6 +16,8 @@ export class TasksService {
         dueDate: new Date('2024-09-01'),
         status: 'OPEN',
         priority: 'P0',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:00:00'),
       },
       {
         id: 't2',
@@ -24,6 +25,8 @@ export class TasksService {
         dueDate: new Date('2024-09-02'),
         status: 'IN_PROGRESS',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T20:00:00'),
       },
       {
         id: 't3',
@@ -31,6 +34,8 @@ export class TasksService {
         dueDate: new Date('2024-09-03'),
         status: 'COMPLETE',
         priority: 'P2',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T12:00:00'),
       },
       {
         id: 't4',
@@ -38,6 +43,8 @@ export class TasksService {
         dueDate: new Date('2024-09-04'),
         status: 'OPEN',
         priority: 'P0',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T13:00:00'),
       },
       {
         id: 't5',
@@ -45,6 +52,8 @@ export class TasksService {
         dueDate: new Date('2024-09-05'),
         status: 'IN_PROGRESS',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:10:00'),
       },
       {
         id: 't6',
@@ -52,6 +61,8 @@ export class TasksService {
         dueDate: new Date('2024-09-06'),
         status: 'COMPLETE',
         priority: 'P2',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:30:00'),
       },
       {
         id: 't7',
@@ -59,6 +70,8 @@ export class TasksService {
         dueDate: new Date('2024-09-07'),
         status: 'OPEN',
         priority: 'P0',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:03:00'),
       },
       {
         id: 't8',
@@ -66,13 +79,17 @@ export class TasksService {
         dueDate: new Date('2024-09-08'),
         status: 'IN_PROGRESS',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:00:20'),
       },
       {
         id: 't9',
         name: 'Conduct User Testing',
         dueDate: new Date('2024-09-09'),
-        status: 'COMPLETE',
+        status: 'OPEN',
         priority: 'P2',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:03:00'),
       },
       {
         id: 't10',
@@ -80,20 +97,26 @@ export class TasksService {
         dueDate: new Date('2024-09-10'),
         status: 'OPEN',
         priority: 'P0',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:00:04'),
       },
       {
         id: 't11',
         name: 'Implement Search',
         dueDate: new Date('2024-09-11'),
-        status: 'IN_PROGRESS',
+        status: 'OPEN',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:00:30'),
       },
       {
         id: 't12',
         name: 'Setup Database',
         dueDate: new Date('2024-09-12'),
-        status: 'COMPLETE',
+        status: 'IN_PROGRESS',
         priority: 'P2',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:05:00'),
       },
       {
         id: 't13',
@@ -101,6 +124,8 @@ export class TasksService {
         dueDate: new Date('2024-09-13'),
         status: 'OPEN',
         priority: 'P0',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:06:00'),
       },
       {
         id: 't14',
@@ -108,13 +133,17 @@ export class TasksService {
         dueDate: new Date('2024-09-14'),
         status: 'IN_PROGRESS',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:10:00'),
       },
       {
         id: 't15',
         name: 'Resolve UI Issues',
         dueDate: new Date('2024-09-15'),
-        status: 'COMPLETE',
+        status: 'OPEN',
         priority: 'P1',
+        createdAt: new Date('2024-08-01T10:00:00'),
+        updatedAt: new Date('2024-08-01T10:11:00'),
       },
     ];
     return of(tasks);
@@ -123,8 +152,4 @@ export class TasksService {
   filterTasksByStatus = (allTasks: Task[], status: string) => {
     return allTasks.filter((task) => task.status === status);
   };
-
-  deleteTask(taskId: string): void {
-    this.tasks = this.tasks.filter((task) => task.id !== taskId);
-  }
 }

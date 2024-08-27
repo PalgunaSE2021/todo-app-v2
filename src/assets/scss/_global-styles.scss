@@ -4,10 +4,6 @@
     flex: 1;
   }
 }
-// .p-button-secondary {
-//   color: #ec4899;
-//   background: white;
-// }
 
 .cursor-pointer {
   cursor: pointer !important;
@@ -23,4 +19,31 @@
 
 .p-card {
   box-shadow: none;
+}
+
+.p-dialog .p-dialog-content {
+  padding-bottom: 0px;
+}
+
+.p-dropdown {
+  &.priority-dropdown {
+    margin-top: 24px;
+  }
+
+  .p-dropdown-trigger-icon {
+    margin-left: 16px;
+    background-color: rgb(230, 229, 227);
+    border-radius: 5px;
+  }
+}
+.error-message {
+  color: rgb(239, 115, 115);
+  font-size: 16px;
+  margin-top: -16px;
+}
+
+.p-metergroup-meters {
+  display: flex;
+  margin-bottom: 48px;
+  height: 16px;
 }

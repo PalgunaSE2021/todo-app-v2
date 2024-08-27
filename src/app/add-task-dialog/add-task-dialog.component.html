@@ -1,3 +1,4 @@
+<!-- <div class="p-dialog-header">Test</div> -->
 <div class="dialog-container">
   <p-floatLabel>
     <input
@@ -36,7 +37,6 @@
     <p-dropdown
       [(ngModel)]="task.priority"
       [options]="priorityOptions"
-      placeholder="Select Priority"
       appendTo="body"
       name="priority"
       #priority="ngModel"
@@ -56,8 +56,32 @@
       appendTo="body"
       optionLabel="label"
       optionValue="value"
-      #status="ngModel"
-    ></p-dropdown>
+    >
+      <ng-template let-option pTemplate="selectedItem">
+        <span *ngIf="option.value === 'Open'">
+          <i class="pi pi-circle-off mr-4"></i>
+        </span>
+        <span *ngIf="option.value === 'In progress'">
+          <i class="pi pi-spin pi-spinner mr-2"></i>
+        </span>
+        <span *ngIf="option.value === 'Complete'">
+          <i class="pi pi-check-circle mr-2"></i>
+        </span>
+        {{ option.label }}
+      </ng-template>
+      <ng-template let-option pTemplate="item">
+        <span *ngIf="option.value === 'Open'">
+          <i class="pi pi-circle-off mr-2"></i>
+        </span>
+        <span *ngIf="option.value === 'In progress'">
+          <i class="pi pi-spin pi-spinner mr-2"></i>
+        </span>
+        <span *ngIf="option.value === 'Complete'">
+          <i class="pi pi-check-circle mr-2"></i>
+        </span>
+        {{ option.label }}
+      </ng-template>
+    </p-dropdown>
     <label for="status">Status</label>
   </p-floatLabel>
 

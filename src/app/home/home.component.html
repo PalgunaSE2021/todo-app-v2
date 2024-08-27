@@ -1,23 +1,48 @@
+<p-toast></p-toast>
 <div class="header">
+  <app-search-filter
+    (searchEvent)="onSearchTextChanged($event)"
+    (priorityEvent)="onPriorityChanged($event)"
+  >
+  </app-search-filter>
   <p-button
     class="add-task-button"
     label="Add Task"
     icon="pi pi-plus"
+    pTooltip="Click to add a new task"
+    tooltipPosition="right"
     (click)="showTaskDialog()"
   ></p-button>
-  <!-- search -->
 </div>
+<p-meterGroup
+  [value]="value"
+  labelPosition="start"
+  labelOrientation="vertical"
+  [style]="{ width: '300px' }"
+/>
 <div class="tasks-body">
   <div class="open-tasks">
     <span class="heading">Open Tasks</span>
-    <app-task-list [tasks]="openTasks"></app-task-list>
+    <app-task-list
+      [tasks]="openTasks"
+      (editTask)="editTask($event)"
+      (deleteTask)="deleteTask($event)"
+    ></app-task-list>
   </div>
   <div class="in-progress-tasks">
     <span class="heading">In-progress Tasks</span>
-    <app-task-list [tasks]="inProgressTasks"></app-task-list>
+    <app-task-list
+      [tasks]="inProgressTasks"
+      (editTask)="editTask($event)"
+      (deleteTask)="deleteTask($event)"
+    ></app-task-list>
   </div>
   <div class="complete-tasks">
     <span class="heading">Completed Tasks</span>
-    <app-task-list [tasks]="completeTasks"></app-task-list>
+    <app-task-list
+      [tasks]="completeTasks"
+      (editTask)="editTask($event)"
+      (deleteTask)="deleteTask($event)"
+    ></app-task-list>
   </div>
 </div>

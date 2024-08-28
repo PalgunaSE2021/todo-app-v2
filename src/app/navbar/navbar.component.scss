@@ -1,0 +1,30 @@
+/* navbar.component.scss */
+.navbar {
+  width: 100%;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+  border-radius: 25px;
+}
+
+.navbar nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar nav ul li a {
+  display: block;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  padding-top: 60px; /* Adjust this value to the height of your navbar */
+}

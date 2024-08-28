@@ -90,3 +90,9 @@
     color: rgb(18, 76, 42);
   }
 }
+
+@media screen and (max-width: 380px) {
+  .header {
+    flex-direction: column;
+  }
+}

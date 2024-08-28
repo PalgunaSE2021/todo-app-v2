@@ -9,6 +9,8 @@ import { SearchFilterComponent } from '../search-filter/search-filter.component'
 import { TasksService } from '../services/tasks.service';
 import { MessageService } from 'primeng/api';
 import { MeterGroupModule } from 'primeng/metergroup';
+import { TooltipModule } from 'primeng/tooltip';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,8 @@ import { MeterGroupModule } from 'primeng/metergroup';
     ButtonModule,
     ToastModule,
     MeterGroupModule,
+    TooltipModule,
+    NavbarComponent,
   ],
   providers: [DialogService, TasksService, MessageService],
   templateUrl: './home.component.html',
